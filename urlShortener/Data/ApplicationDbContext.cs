@@ -1,7 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
+using urlShortener.Models;
 
 namespace Data
 {
@@ -11,6 +10,6 @@ namespace Data
         {
             AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
         }
-        public DbSet<Url> Urls { get; set; }
+        public DbSet<Urls> Urls { get; set; }
     }
 }
