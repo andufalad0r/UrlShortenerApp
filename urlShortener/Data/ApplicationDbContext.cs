@@ -10,6 +10,6 @@ namespace Data
         {
             AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
         }
-        public DbSet<Urls> Urls { get; set; }
+        public DbSet<Url> Urls { get; set; }
     }
 }
