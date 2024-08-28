@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Data;
 using Microsoft.EntityFrameworkCore;
 using urlShortener.Dtos;
+using urlShortener.Mappers;
 using urlShortener.Models;
 using urlShortener.Services.Interfaces;
 
@@ -19,10 +20,18 @@ namespace urlShortener.Services
             this.dbContext = dbContext;
             this.urlShorteningService = urlShorteningService;
         }
-
         public async Task<List<Url>> GetAllAsync()
         {
             return await dbContext.Urls.ToListAsync();
+        }
+        public async Task<UrlInfoViewModel> GetByIdAsync(int id)
+        {
+            var urlModel = await dbContext.Urls.FirstOrDefaultAsync(x => x.Id == id);
+            if(urlModel == null)
+            {
+                return null;
+            }
+            return urlModel.ToUrlInfo();
         }
         public async Task<Url> CreateUrlAsync(UrlRequestDto url, string userId, string userName)
         {
@@ -72,5 +81,6 @@ namespace urlShortener.Services
         {
             return !Uri.TryCreate(url, UriKind.Absolute, out _);
         }
+
     }
 }

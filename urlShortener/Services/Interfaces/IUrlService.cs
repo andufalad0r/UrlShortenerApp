@@ -10,6 +10,7 @@ namespace urlShortener.Services
     public interface IUrlService
     {
         Task<List<Url>> GetAllAsync();
+        Task<UrlInfoViewModel> GetByIdAsync(int id);
         Task<Url> CreateUrlAsync(UrlRequestDto url, string userName, string userId);
         Task<Url> DeleteUrlAsync(int id, string userId);
         Task<Url> DeleteUrlAdminAsync(int id);

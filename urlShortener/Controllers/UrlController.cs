@@ -1,4 +1,5 @@
 using System.Security.Claims;
+using System.Security.Cryptography;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using urlShortener.Dtos;
@@ -21,6 +22,12 @@ namespace urlShortener.Controllers
         {
             var urls = await urlService.GetAllAsync();
             return Ok(urls);
+        }
+        [HttpGet("{id:int}")]
+        public async Task<IActionResult> GetById([FromRoute] int id)
+        {
+            var urlInfo = await urlService.GetByIdAsync(id);
+            return Ok(urlInfo);
         }
         [Authorize]
         [HttpPost]
