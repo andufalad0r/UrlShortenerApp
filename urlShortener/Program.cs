@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using urlShortener.Models;
 using urlShortener.Services;
+using urlShortener.Services.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -48,6 +49,8 @@ builder.Services.AddAuthentication(options =>
 });
 
 builder.Services.AddTransient<IAuthService,AuthService>();
+builder.Services.AddScoped<IUrlService,UrlService>();
+builder.Services.AddScoped<IUrlShorteningService, UrlShorteningService>();
 
 var app = builder.Build();
 

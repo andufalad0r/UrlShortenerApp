@@ -11,7 +11,8 @@ namespace urlShortener.Services
     {
         Task<List<Url>> GetAllAsync();
         Task<Url> CreateUrlAsync(UrlRequestDto url, string userName, string userId);
-        Task<Url> DeleteUrlAsync(int id);
+        Task<Url> DeleteUrlAsync(int id, string userId);
+        Task<Url> DeleteUrlAdminAsync(int id);
 
     }
 }
